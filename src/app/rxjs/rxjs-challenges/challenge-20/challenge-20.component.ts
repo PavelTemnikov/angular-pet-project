@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'app-challenge-twenty',
@@ -56,9 +56,9 @@ import { Component } from '@angular/core';
             font-weight: bold;
             text-transform: uppercase;
             border: 1px solid rgba(0, 0, 0, 0.1);
-        }`
-        
-    ]
+        }`   
+    ],
+    encapsulation: ViewEncapsulation.None
 })
 export class Challenge20Component {
 
