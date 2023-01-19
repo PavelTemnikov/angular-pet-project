@@ -1,5 +1,6 @@
-import { MasterService, ValueService } from "./demo";
+import { first } from "rxjs";
 import { DashboardHeroComponent } from "../dashboard/dashboard-hero.component";
+import { LightswitchComponent, MasterService, ValueService } from "./demo";
 
 ///////// Fakes /////////
 export class FakeService extends ValueService {
@@ -65,6 +66,25 @@ describe('demo (no TestBed):', () => {
             expect(valueServiceSpy.getValue.calls.mostRecent().returnValue).toBe(stubValue);
         });
     });
+
+    describe('LightswitchComp', () => {
+        it('#clicked() should toggle #isOn', () => {
+            const comp = new LightswitchComponent();
+            expect(comp.isOn).withContext('off at first').toBe(false);
+            comp.clicked();
+            expect(comp.isOn).withContext('on after first click').toBe(true);
+            comp.clicked();
+            expect(comp.isOn).withContext('off after first click').toBe(false);
+        });
+
+        it('#clicked() should set #message to "is on"', () => {
+            const comp = new LightswitchComponent();
+            expect(comp.message).withContext('off at first').toMatch(/is off/i);
+            comp.clicked();
+            expect(comp.message).withContext('on after click').toMatch(/is on/i);
+        });
+    });
+
     describe('DashboardHeroComponent class only', () => {
         it('raises the selected event when clicked', () => {
             const comp = new DashboardHeroComponent();
