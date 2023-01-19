@@ -1,4 +1,5 @@
 import { MasterService, ValueService } from "./demo";
+import { DashboardHeroComponent } from "../dashboard/dashboard-hero.component";
 
 ///////// Fakes /////////
 export class FakeService extends ValueService {
@@ -62,6 +63,16 @@ describe('demo (no TestBed):', () => {
             expect(masterService.getValue()).withContext('service returns stub value').toBe(stubValue);
             expect(valueServiceSpy.getValue.calls.count()).withContext('spy method is called once').toBe(1);
             expect(valueServiceSpy.getValue.calls.mostRecent().returnValue).toBe(stubValue);
+        });
+    });
+    describe('DashboardHeroComponent class only', () => {
+        it('raises the selected event when clicked', () => {
+            const comp = new DashboardHeroComponent();
+            const hero = { id: 1, name: 'name' };
+            comp.hero = hero;
+
+            comp.selected.pipe(first()).subscribe(selectedHero => expect(selectedHero).toEqual(hero));
+            comp.click();
         });
     });
 });
