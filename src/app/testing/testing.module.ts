@@ -7,6 +7,8 @@ import { TestingComponent } from './testing.component';
 import { DashboardHeroComponent } from './dashboard/dashboard-hero.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { HeroDetailComponent } from './hero/hero-detail.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BackendInterceptor } from './fake-backend/backend-interceptor';
 
 
 @NgModule({
@@ -20,6 +22,9 @@ import { HeroDetailComponent } from './hero/hero-detail.component';
     CommonModule,
     FormsModule,
     TestingRoutingModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true }
   ]
 })
 export class TestingModule { }
