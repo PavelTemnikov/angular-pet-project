@@ -7,8 +7,10 @@ import { TestingComponent } from './testing.component';
 import { DashboardHeroComponent } from './dashboard/dashboard-hero.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { HeroDetailComponent } from './hero/hero-detail.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BackendInterceptor } from './fake-backend/backend-interceptor';
+import { TwainComponent } from './twain/twain.component';
+import { TwainService } from './twain/twain.service';
 
 
 @NgModule({
@@ -16,15 +18,18 @@ import { BackendInterceptor } from './fake-backend/backend-interceptor';
     TestingComponent,
     DashboardHeroComponent,
     WelcomeComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    TwainComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     TestingRoutingModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true },
+    TwainService
   ]
 })
 export class TestingModule { }
