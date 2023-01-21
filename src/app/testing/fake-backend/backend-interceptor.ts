@@ -13,8 +13,11 @@ export class BackendInterceptor implements HttpInterceptor {
         let id = Number(pathnames[pathnames.length - 1]);
 
         switch (true) {
-            case req.url.startsWith('api/quotes/') && id:
+            case req.url.startsWith('api/quotes/') && !!id:
                 const quote = QUOTES.find(q => q.id === id);
+                if (!quote) {
+                    throw new HttpErrorResponse({ status: 404, statusText: 'Not Found' });
+                }
                 response = of(new HttpResponse<Quote>({ body: quote}));
                 break;
             default:
