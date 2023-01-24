@@ -28,7 +28,8 @@ export class TwainComponent implements OnInit {
         this.quote = this.twainService.getQuote().pipe(
             startWith('...'),
             catchError(error => {
-                this.errorMessage = error.message || error.toString();
+                // this.errorMessage = error.message || error.toString();
+                setTimeout(() => this.errorMessage = error.message || error.toString());
                 return of('...');
             })
         )
