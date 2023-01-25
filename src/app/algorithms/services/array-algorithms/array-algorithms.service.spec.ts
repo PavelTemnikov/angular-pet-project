@@ -22,14 +22,43 @@ describe('ArrayAlgorithmsService', () => {
         expect(service.containsDuplicate(nums)).toBeTrue();
     });
 
-    it('missingNumber()', () => {
+    it('missingNumber1()', () => {
         let nums = [3,0,1];
-        expect(service.missingNumber(nums)).toBe(2);
+        expect(service.missingNumber1(nums)).toBe(2);
 
         nums = [0,1];
-        expect(service.missingNumber(nums)).toBe(2);
+        expect(service.missingNumber1(nums)).toBe(2);
 
         nums = [9,6,4,2,3,5,7,0,1];
-        expect(service.missingNumber(nums)).toBe(8);
+        expect(service.missingNumber1(nums)).toBe(8);
+    });
+
+    it('missingNumber2()', () => {
+        let nums = [3,0,1];
+        expect(service.missingNumber2(nums)).toBe(2);
+
+        nums = [0,1];
+        expect(service.missingNumber2(nums)).toBe(2);
+
+        nums = [9,6,4,2,3,5,7,0,1];
+        expect(service.missingNumber2(nums)).toBe(8);
+
+        nums = [9,6,4,2,3,5,7,8,1];
+        expect(service.missingNumber2(nums)).toBe(0);
+    });
+
+    it('missingNumber3()', () => {
+        let nums = [3,0,1];
+        expect(service.missingNumber3(nums)).toBe(2);
+
+        nums = [0,1];
+        expect(service.missingNumber3(nums)).toBe(2);
+
+        nums = [9,6,4,2,3,5,7,0,1];
+        expect(service.missingNumber3(nums)).toBe(8);
+
+        nums = [9,6,4,2,3,5,7,8,1];
+        expect(service.missingNumber3(nums)).toBe(0);
+    });
     });
 });
