@@ -126,4 +126,45 @@ export class ArrayAlgorithmsService {
         }
         return result;
     }
+
+    // https://leetcode.com/problems/single-number/
+    // Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+    // You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+    // Constraints:
+    //     1 <= nums.length <= 3 * 10^4
+    //     -3 * 10^4 <= nums[i] <= 3 * 10^4
+    //     Each element in the array appears twice except for one element which appears only once.
+
+    // Input: nums = [2,2,1]; Output: 1
+    // Input: nums = [4,1,2,1,2]; Output: 4
+    // Input: nums = [1]; Output: 1
+
+    // O(n) - time
+    // O(1) - space
+    singleNumber1(nums: number[]): number {
+        let result = nums[0];
+        for (let i = 1; i < nums.length; i++) {
+            result ^= nums[i];
+        }
+        return result;
+    };
+
+    // O(n) - time
+    // O(n) - space
+    singleNumber2(nums: number[]): number {
+        const cache: {[key: string]: number} = {};
+        for (let i = 0; i < nums.length; i++) {
+            if (cache[nums[i]] === undefined) {
+                cache[nums[i]] = 0;
+            }
+            cache[nums[i]] += 1;
+        }
+        for (let prop in cache) {
+            if (cache[prop] === 1) {
+                return Number(prop);
+            }
+        }
+        return -1;
+    }
 }
