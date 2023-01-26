@@ -80,5 +80,50 @@ export class ArrayAlgorithmsService {
         return result;
     }
 
+    // https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+    // Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all the integers in the range [1, n] that do not appear in nums.
+    // Follow up: Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
+
+    // Constraints:
+    //     n == nums.length
+    //     1 <= n <= 10^5
+    //     1 <= nums[i] <= n
+
+    // O(n) - time
+    // O(n) - space
+    findAllNumbersDisappearedInArray1(nums: number[]): number[] {
+        const result: number[] = [];
+        let cache: boolean[] = new Array(nums.length + 1);
+        for (let i = 0; i < nums.length; i++) {
+            cache[nums[i]] = true;
+        }
+        for (let i = 1; i < cache.length; i++) {
+            if (!cache[i]) {
+                result.push(i);
+            }
+        }
+        return result;
+    }
+
+    // O(n) - time
+    // O(1) - space
+    findAllNumbersDisappearedInArray2(nums: number[]): number[] {
+        const hash = (value: number) => -1 * value;
+        const unHash = (value: number) => Math.abs(value);
+        const isHashed = (value: number) => value < 0;
+
+        let result: number[] = [];
+        for (let i = 0; i < nums.length; i++) {
+            const value = isHashed(nums[i]) ? unHash(nums[i]) : nums[i];
+            if (!isHashed(nums[value - 1])) {
+                nums[value - 1] = hash(nums[value - 1]);
+            }
+        }
+        for (let i = 0; i < nums.length; i++) {
+            if (!isHashed(nums[i])) {
+                result.push(i + 1);
+            }
+        }
+        return result;
     }
 }

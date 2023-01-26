@@ -60,5 +60,20 @@ describe('ArrayAlgorithmsService', () => {
         nums = [9,6,4,2,3,5,7,8,1];
         expect(service.missingNumber3(nums)).toBe(0);
     });
+
+    it('findAllNumbersDisappearedInArray1', () => {
+        let nums = [4,3,2,7,8,2,3,1];
+        expect(service.findAllNumbersDisappearedInArray1(nums)).toEqual([5, 6]);
+
+        nums = [1,1];
+        expect(service.findAllNumbersDisappearedInArray1(nums)).toEqual([2]);
+    });
+
+    it('findAllNumbersDisappearedInArray2', () => {
+        let nums = [4,3,2,7,8,2,3,1];
+        expect(service.findAllNumbersDisappearedInArray2(nums)).toEqual([5, 6]);
+
+        nums = [1,1];
+        expect(service.findAllNumbersDisappearedInArray2(nums)).toEqual([2]);
     });
 });
