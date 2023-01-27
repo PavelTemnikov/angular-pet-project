@@ -98,4 +98,24 @@ describe('ArrayAlgorithmsService', () => {
         nums = [1];
         expect(service.singleNumber2(nums)).toBe(1);
     });
+
+    it('convert_1D_Array_Into_2D_Array', () => {
+        // Input: original = [1,2,3,4], m = 2, n = 2; Output: [[1,2],[3,4]]
+        // Input: original = [1,2,3], m = 1, n = 3; Output: [[1,2,3]]
+        // Input: original = [1,2], m = 1, n = 1;  Output: []
+        let nums = [1,2,3,4];
+        let m = 2;
+        let n = 2;
+        expect(service.convert_1D_Array_Into_2D_Array(nums, m, n)).toEqual([[1,2],[3,4]]);
+
+        nums = [1,2,3];
+        m = 1;
+        n = 3;
+        expect(service.convert_1D_Array_Into_2D_Array(nums, m, n)).toEqual([[1,2,3]]);
+
+        nums = [1,2];
+        m = 1;
+        n = 1;
+        expect(service.convert_1D_Array_Into_2D_Array(nums, m, n)).toEqual([]);
+    });
 });
