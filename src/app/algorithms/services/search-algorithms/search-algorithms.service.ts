@@ -6,6 +6,8 @@ import { AlgorithmsModule } from '../../algorithms.module';
 })
 export class SearchAlgorithmsService {
 
+  // O(log(n)) - time
+  // O(1) - space
   binarySearch(sortedArray: number[], seekElement: number): number {
     let startIndex = 0;
     let endIndex = sortedArray.length - 1;
