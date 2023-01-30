@@ -118,4 +118,12 @@ describe('ArrayAlgorithmsService', () => {
         n = 1;
         expect(service.convert_1D_Array_Into_2D_Array(nums, m, n)).toEqual([]);
     });
+
+    it('findTheDuplicateNumber', () => {
+        let nums = [1,3,4,2,2];
+        expect(service.findTheDuplicateNumber(nums)).toBe(2);
+
+        nums = [3,1,3,4,2];
+        expect(service.findTheDuplicateNumber(nums)).toBe(3);
+    });
 });
