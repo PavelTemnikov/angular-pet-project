@@ -10,6 +10,7 @@ export class ArrayAlgorithmsService {
 
     // https://leetcode.com/problems/contains-duplicate/
     // Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+    
     // O(n) - time
     // O(n) - space
     containsDuplicate(nums: number[]): boolean {
@@ -25,6 +26,7 @@ export class ArrayAlgorithmsService {
 
     // https://leetcode.com/problems/missing-number/
     // Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
     // Follow up: Could you implement a solution using only O(1) extra space complexity and O(n) runtime complexity?
 
     // Constraints:
@@ -82,6 +84,7 @@ export class ArrayAlgorithmsService {
 
     // https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
     // Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all the integers in the range [1, n] that do not appear in nums.
+
     // Follow up: Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
 
     // Constraints:
@@ -136,10 +139,6 @@ export class ArrayAlgorithmsService {
     //     -3 * 10^4 <= nums[i] <= 3 * 10^4
     //     Each element in the array appears twice except for one element which appears only once.
 
-    // Input: nums = [2,2,1]; Output: 1
-    // Input: nums = [4,1,2,1,2]; Output: 4
-    // Input: nums = [1]; Output: 1
-
     // O(n) - time
     // O(1) - space
     singleNumber1(nums: number[]): number {
@@ -180,17 +179,44 @@ export class ArrayAlgorithmsService {
     //     1 <= original[i] <= 10^5
     //     1 <= m, n <= 4 * 10^4
 
-    // Input: original = [1,2,3,4], m = 2, n = 2; Output: [[1,2],[3,4]]
-    // Input: original = [1,2,3], m = 1, n = 3; Output: [[1,2,3]]
-    // Input: original = [1,2], m = 1, n = 1;  Output: []
-
-    convert_1D_Array_Into_2D_Array(original: number[], m: number, n: number): number[][] {
+    // O(n) - time
+    // O(n) - space
+    convert_1D_Array_Into_2D_Array1(original: number[], m: number, n: number): number[][] {
         if (m * n !== original.length) {
             return [];
         }
-        for (let i = 0; i < original.length; i++) {
+        const result: number[][] = [];
+        for (let i = 0; i < original.length; i += n) {
+            const row: number[] = [];
 
+            for (let j = 0; j < n; j++) {
+                row.push(original[i + j]);
+            }
+            result.push(row);
         }
+        return result;
+    }
+
+
+    // O(n) - time
+    // O(n) - space
+    convert_1D_Array_Into_2D_Array2(original: number[], m: number, n: number): number[][] {
+        if (m * n !== original.length) {
+            return [];
+        }
+        const result: number[][] = [];
+        let row: number[] = [];
+
+        for (let i = 0; i < original.length; i++) {
+            row.push(original[i]);
+
+            if (row.length === n) {
+                result.push(row);
+                row = [];
+            }
+        }
+        return result;
+    }
     }
 
     // https://leetcode.com/problems/find-the-duplicate-number/

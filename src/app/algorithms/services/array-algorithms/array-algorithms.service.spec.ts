@@ -99,24 +99,49 @@ describe('ArrayAlgorithmsService', () => {
         expect(service.singleNumber2(nums)).toBe(1);
     });
 
-    it('convert_1D_Array_Into_2D_Array', () => {
-        // Input: original = [1,2,3,4], m = 2, n = 2; Output: [[1,2],[3,4]]
-        // Input: original = [1,2,3], m = 1, n = 3; Output: [[1,2,3]]
-        // Input: original = [1,2], m = 1, n = 1;  Output: []
+    it('convert_1D_Array_Into_2D_Array1()', () => {
         let nums = [1,2,3,4];
         let m = 2;
         let n = 2;
-        expect(service.convert_1D_Array_Into_2D_Array(nums, m, n)).toEqual([[1,2],[3,4]]);
+        expect(service.convert_1D_Array_Into_2D_Array1(nums, m, n)).toEqual([[1,2],[3,4]]);
 
         nums = [1,2,3];
         m = 1;
         n = 3;
-        expect(service.convert_1D_Array_Into_2D_Array(nums, m, n)).toEqual([[1,2,3]]);
+        expect(service.convert_1D_Array_Into_2D_Array1(nums, m, n)).toEqual([[1,2,3]]);
 
         nums = [1,2];
         m = 1;
         n = 1;
-        expect(service.convert_1D_Array_Into_2D_Array(nums, m, n)).toEqual([]);
+        expect(service.convert_1D_Array_Into_2D_Array1(nums, m, n)).toEqual([]);
+
+        nums = [1,2,3,4,5,6,7,8,9,10,11,12];
+        m = 4;
+        n = 3;
+        expect(service.convert_1D_Array_Into_2D_Array1(nums, m, n)).toEqual([[1,2,3],[4,5,6],[7,8,9],[10,11,12]]);
+    });
+
+    it('convert_1D_Array_Into_2D_Array2()', () => {
+        let nums = [1,2,3,4];
+        let m = 2;
+        let n = 2;
+        expect(service.convert_1D_Array_Into_2D_Array2(nums, m, n)).toEqual([[1,2],[3,4]]);
+
+        nums = [1,2,3];
+        m = 1;
+        n = 3;
+        expect(service.convert_1D_Array_Into_2D_Array2(nums, m, n)).toEqual([[1,2,3]]);
+
+        nums = [1,2];
+        m = 1;
+        n = 1;
+        expect(service.convert_1D_Array_Into_2D_Array2(nums, m, n)).toEqual([]);
+
+        nums = [1,2,3,4,5,6,7,8,9,10,11,12];
+        m = 4;
+        n = 3;
+        expect(service.convert_1D_Array_Into_2D_Array2(nums, m, n)).toEqual([[1,2,3],[4,5,6],[7,8,9],[10,11,12]]);
+    });
     });
 
     it('findTheDuplicateNumber', () => {
