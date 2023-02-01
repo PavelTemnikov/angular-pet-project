@@ -284,7 +284,7 @@ export class ArrayAlgorithmsService {
     // Input: nums = [1,3,4,2,2]; Output: 2
     // Input: nums = [3,1,3,4,2]; Output: 3
 
-    findTheDuplicateNumber(nums: number[]): number {
+    // findTheDuplicateNumber(nums: number[]): number {
 
-    }
+    // }
 }
