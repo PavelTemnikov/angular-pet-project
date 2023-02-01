@@ -8,6 +8,8 @@ export class SortingAlgorithmsService {
 
     constructor() { }
 
+    // O(n^2) - time
+    // O(1) - space
     bubbleSort(nums: number[]): number[] {
         let swapped = false;
         for (let i = 1; i < nums.length; i++) {
