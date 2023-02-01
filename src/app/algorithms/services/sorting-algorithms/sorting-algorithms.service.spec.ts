@@ -19,4 +19,9 @@ describe('SortingAlgorithmsService', () => {
         expect(service.bubbleSort(notSortedArr)).toEqual(sortedArr);
         expect(service.bubbleSort(negativeArr)).toEqual(negativeArrSorted);
     });
+
+    it('selectionSort()', () => {
+        expect(service.selectionSort(notSortedArr)).toEqual(sortedArr);
+        expect(service.selectionSort(negativeArr)).toEqual(negativeArrSorted);
+    });
 });
