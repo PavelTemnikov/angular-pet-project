@@ -44,4 +44,18 @@ export class SortingAlgorithmsService {
         }
         return nums;
     }
+
+    // O(n^2) - time
+    // O(1) - space
+    insertionSort(nums: number[]): number[] {
+        for (let i = 1; i < nums.length; i++) {
+            let currentIndex = i;
+            
+            while (nums[currentIndex - 1] !== undefined && nums[currentIndex] < nums[currentIndex - 1]) {
+                [ nums[currentIndex], nums[currentIndex - 1] ] = [ nums[currentIndex - 1], nums[currentIndex] ];
+                currentIndex--;
+            }
+        }
+        return nums;
+    }
 }
