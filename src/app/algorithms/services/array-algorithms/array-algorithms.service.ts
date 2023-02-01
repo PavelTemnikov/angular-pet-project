@@ -217,6 +217,53 @@ export class ArrayAlgorithmsService {
         }
         return result;
     }
+
+    // https://leetcode.com/problems/product-of-array-except-self/
+    // Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+    // The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+    // You must write an algorithm that runs in O(n) time and without using the division operation.
+
+    // Follow up: Can you solve the problem in O(1) extra space complexity? (The output array does not count as extra space for space complexity analysis.)
+
+    // Constraints:
+    //     2 <= nums.length <= 105
+    //     -30 <= nums[i] <= 30
+    //     The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+    
+    // O(n^2) - time
+    // O(1) - space
+    productOfArrayExceptSelf1(nums: number[]): number[] {
+        const result: number[] = [];
+
+        for (let i = 0; i < nums.length; i++) {
+            let product = 1;
+
+            for (let j = 0; j < nums.length; j++) {
+                if (i === j) continue;
+                product *= nums[j];
+            }
+
+            if (product === -0) product = 0;
+            result.push(product);
+        }
+        return result;
+    }
+
+    // O(n) - time
+    // O(1) - space
+    productOfArrayExceptSelf2(nums: number[]): number[] {
+        const result: number[] = [];
+        let leftProduct = 1;
+        let rightProduct = 1;
+
+        for (let left = 0, right = nums.length - 1; left < nums.length; left++, right--) {
+            result[left] = result[left] === undefined ? leftProduct : result[left] * leftProduct;
+            result[right] = result[right] === undefined ? rightProduct : result[right] * rightProduct;
+
+            leftProduct *= nums[left];
+            rightProduct *= nums[right];
+        }
+        return result;
     }
 
     // https://leetcode.com/problems/find-the-duplicate-number/

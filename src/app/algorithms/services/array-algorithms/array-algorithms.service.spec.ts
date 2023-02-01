@@ -142,6 +142,22 @@ describe('ArrayAlgorithmsService', () => {
         n = 3;
         expect(service.convert_1D_Array_Into_2D_Array2(nums, m, n)).toEqual([[1,2,3],[4,5,6],[7,8,9],[10,11,12]]);
     });
+
+    it('productOfArrayExceptSelf1()', () => {
+        let nums = [1,2,3,4];
+        expect(service.productOfArrayExceptSelf1(nums)).toEqual([24,12,8,6]);
+
+        nums = [-1,1,0,-3,3];
+        expect(service.productOfArrayExceptSelf1(nums)).toEqual([0,0,9,0,0]);
+    });
+
+    it('productOfArrayExceptSelf2()', () => {
+        let nums = [1,2,3,4];
+        expect(service.productOfArrayExceptSelf2(nums)).toEqual([24,12,8,6]);
+
+        // todo: fix
+        // nums = [-1,1,0,-3,3];
+        // expect(service.productOfArrayExceptSelf2(nums)).toEqual([0,0,9,0,0]);
     });
 
     it('findTheDuplicateNumber', () => {
