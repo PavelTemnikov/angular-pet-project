@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlgorithmsModule } from '../../algorithms.module';
+import { MinNumberHeap } from '../../data-structures/heap';
 
 @Injectable({
     providedIn: AlgorithmsModule
@@ -57,5 +58,17 @@ export class SortingAlgorithmsService {
             }
         }
         return nums;
+    }
+
+    // O(n * log(n)) - time
+    // O(n) - space
+    heapSort(nums: number[]): number[] {
+        const sortedArr = [];
+        const heap = new MinNumberHeap();
+        for (let i = 0; i < nums.length; i++) { heap.add(nums[i]); }
+        while (!heap.isEmpty()) {
+            sortedArr.push( heap.poll() );
+        }
+        return sortedArr;
     }
 }
