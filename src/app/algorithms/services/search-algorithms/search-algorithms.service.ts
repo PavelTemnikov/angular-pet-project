@@ -14,7 +14,8 @@ export class SearchAlgorithmsService {
     let middleIndex: number;
 
     while (endIndex >= startIndex) {
-      middleIndex = startIndex + Math.floor((endIndex - startIndex) / 2);
+      // middleIndex = startIndex + Math.floor((endIndex - startIndex) / 2);
+      middleIndex = Math.floor((startIndex + endIndex) / 2);
 
       if (seekElement === sortedArray[middleIndex]) {
         return middleIndex;
