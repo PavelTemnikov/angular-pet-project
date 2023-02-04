@@ -34,4 +34,9 @@ describe('SortingAlgorithmsService', () => {
         expect(service.heapSort(notSortedArr)).toEqual(sortedArr);
         expect(service.heapSort(negativeArr)).toEqual(negativeArrSorted);
     });
+
+    it('mergeSort()', () => {
+        expect(service.mergeSort(notSortedArr)).toEqual(sortedArr);
+        expect(service.mergeSort(negativeArr)).toEqual(negativeArrSorted);
+    });
 });
