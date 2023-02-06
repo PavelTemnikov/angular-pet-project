@@ -12,7 +12,13 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([], { developmentMode: true })
+    NgxsModule.forRoot([], {
+      developmentMode: true,
+      selectorOptions: {
+        suppressErrors: false,
+        injectContainerState: false
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
