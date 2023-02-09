@@ -51,7 +51,7 @@ export class SortingAlgorithmsService {
     insertionSort(nums: number[]): number[] {
         for (let i = 1; i < nums.length; i++) {
             let currentIndex = i;
-            
+
             while (nums[currentIndex - 1] !== undefined && nums[currentIndex] < nums[currentIndex - 1]) {
                 [ nums[currentIndex], nums[currentIndex - 1] ] = [ nums[currentIndex - 1], nums[currentIndex] ];
                 currentIndex--;
@@ -72,6 +72,8 @@ export class SortingAlgorithmsService {
         return sortedArr;
     }
 
+    // O(n * log(n)) - time
+    // O(n) - space
     mergeSort(arr: number[], tempArr: number[] = [], start = 0, end = arr.length - 1): number[] {
         if (start >= end) {
             return arr;
@@ -83,7 +85,7 @@ export class SortingAlgorithmsService {
         let firstPointer = start;
         let secondPointer = middle + 1;
         let index = start;
-        
+
         while (firstPointer <= middle && secondPointer <= end) {
             if (arr[firstPointer] <= arr[secondPointer]) {
                 tempArr[index] = arr[firstPointer];
@@ -101,5 +103,17 @@ export class SortingAlgorithmsService {
         for (let i = start;         i <= end;    i++)          { arr[i] = tempArr[i]; }
 
         return arr;
+    }
+
+    quickSort(arr: number[]): number[] {
+        let left = 0;
+        let right = arr.length - 1;
+        let pivot = Math.floor( (right + left) / 2 );
+
+        while (left <= right) {
+            while (arr[left] <= arr[pivot]) {
+                left++;
+            }
+        }
     }
 }
