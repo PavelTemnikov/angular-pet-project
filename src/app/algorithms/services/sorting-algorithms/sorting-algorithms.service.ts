@@ -72,7 +72,7 @@ export class SortingAlgorithmsService {
         return sortedArr;
     }
 
-    // O(n * log(n)) - time
+    // O(log(n) * n) - time
     // O(n) - space
     mergeSort(arr: number[], tempArr: number[] = [], start = 0, end = arr.length - 1): number[] {
         if (start >= end) {
@@ -105,15 +105,35 @@ export class SortingAlgorithmsService {
         return arr;
     }
 
-    quickSort(arr: number[]): number[] {
-        let left = 0;
-        let right = arr.length - 1;
-        let pivot = Math.floor( (right + left) / 2 );
+    // O(n * log(n)) - time
+    // O(log(n)) - space (because of recursion stack keeping in memory)
+    quickSort(arr: number[], start = 0, end = arr.length - 1): number[] {
+        if (start >= end) {
+            return arr;
+        }
+        let left = start;
+        let right = end;
+        const middleIndex = Math.floor( (right + left) / 2 );
+        const pivotElm = arr[middleIndex];
 
         while (left <= right) {
-            while (arr[left] <= arr[pivot]) {
+            while (arr[left] < pivotElm) {
                 left++;
             }
+            while (arr[right] > pivotElm) {
+                right--;
+            }
+            if (left <= right) {
+                const temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+
+                left++;
+                right--;
+            }
         }
+        this.quickSort(arr, start, left - 1);
+        this.quickSort(arr, left, end);
+        return arr;
     }
 }

@@ -40,8 +40,8 @@ describe('SortingAlgorithmsService', () => {
         expect(service.mergeSort(negativeArr)).toEqual(negativeArrSorted);
     });
 
-  it('quickSort()', () => {
-    expect(service.quickSort(notSortedArr)).toEqual(sortedArr);
-    expect(service.quickSort(negativeArr)).toEqual(negativeArrSorted);
-  });
+    it('quickSort()', () => {
+        expect(service.quickSort(notSortedArr)).toEqual(sortedArr);
+        expect(service.quickSort(negativeArr)).toEqual(negativeArrSorted);
+    });
 });
