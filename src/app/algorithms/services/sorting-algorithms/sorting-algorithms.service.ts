@@ -11,22 +11,23 @@ export class SortingAlgorithmsService {
 
     // O(n^2) - time
     // O(1) - space
-    bubbleSort(nums: number[]): number[] {
-        let swapped = false;
-        for (let i = 1; i < nums.length; i++) {
-            for (let j = 0; j < nums.length - i; j++) {
-                if (nums[j] > nums[j + 1]) {
-                    [ nums[j], nums[j + 1] ] = [ nums[j + 1], nums[j] ];
-                    swapped = true;
+    bubbleSort(arr: number[]): number[] {
+        for (let i = 0; i < arr.length - 1; i++) {
+            let isSwapped = false;
+            for (let j = 1; j < arr.length - i; j++) {
+                if (arr[j - 1] > arr[j]) {
+                    const temp = arr[j - 1];
+                    arr[j - 1] = arr[j];
+                    arr[j] = temp;
+                    isSwapped = true;
                 }
             }
-            if (!swapped) {
+            if (!isSwapped) {
                 break;
             }
         }
-        return nums;
+        return arr;
     }
-
 
     // O(n^2) - time
     // O(1) - space
