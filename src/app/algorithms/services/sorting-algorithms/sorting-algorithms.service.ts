@@ -77,18 +77,17 @@ export class SortingAlgorithmsService {
 
     // O(log(n) * n) - time
     // O(n) - space
-    mergeSort(arr: number[], tempArr: number[] = [], start = 0, end = arr.length - 1): number[] {
+    mergeSort(arr: number[], tempArr = new Array(arr.length), start = 0, end = arr.length - 1): number[] {
         if (start >= end) {
             return arr;
         }
-        const middle = Math.floor( (start + end) / 2 );
+        const middle = Math.floor((start + end) / 2);
         this.mergeSort(arr, tempArr, start, middle);
         this.mergeSort(arr, tempArr, middle + 1, end);
 
         let firstPointer = start;
         let secondPointer = middle + 1;
         let index = start;
-
         while (firstPointer <= middle && secondPointer <= end) {
             if (arr[firstPointer] <= arr[secondPointer]) {
                 tempArr[index] = arr[firstPointer];
@@ -104,7 +103,7 @@ export class SortingAlgorithmsService {
         for (let i = firstPointer;  i <= middle; i++, index++) { tempArr[index] = arr[i]; }
         for (let i = secondPointer; i <= end;    i++, index++) { tempArr[index] = arr[i]; }
         for (let i = start;         i <= end;    i++)          { arr[i] = tempArr[i]; }
-
+        
         return arr;
     }
 
