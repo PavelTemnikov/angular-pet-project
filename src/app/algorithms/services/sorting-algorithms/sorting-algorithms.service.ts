@@ -88,6 +88,7 @@ export class SortingAlgorithmsService {
         let firstPointer = start;
         let secondPointer = middle + 1;
         let index = start;
+
         while (firstPointer <= middle && secondPointer <= end) {
             if (arr[firstPointer] <= arr[secondPointer]) {
                 tempArr[index] = arr[firstPointer];
@@ -103,7 +104,7 @@ export class SortingAlgorithmsService {
         for (let i = firstPointer;  i <= middle; i++, index++) { tempArr[index] = arr[i]; }
         for (let i = secondPointer; i <= end;    i++, index++) { tempArr[index] = arr[i]; }
         for (let i = start;         i <= end;    i++)          { arr[i] = tempArr[i]; }
-        
+
         return arr;
     }
 
@@ -115,8 +116,8 @@ export class SortingAlgorithmsService {
         }
         let left = start;
         let right = end;
-        const middleIndex = Math.floor( (right + left) / 2 );
-        const pivotElm = arr[middleIndex];
+        const middle = Math.floor( (right + left) / 2 );
+        const pivotElm = arr[middle];
 
         while (left <= right) {
             while (arr[left] < pivotElm) {
@@ -136,6 +137,7 @@ export class SortingAlgorithmsService {
         }
         this.quickSort(arr, start, left - 1);
         this.quickSort(arr, left, end);
+        
         return arr;
     }
 }
