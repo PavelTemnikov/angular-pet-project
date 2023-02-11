@@ -15,10 +15,10 @@ export class SortingAlgorithmsService {
         for (let i = 0; i < arr.length - 1; i++) {
             let isSwapped = false;
             for (let j = 1; j < arr.length - i; j++) {
-                if (arr[j - 1] > arr[j]) {
-                    const temp = arr[j - 1];
-                    arr[j - 1] = arr[j];
-                    arr[j] = temp;
+                if (arr[j] < arr[j - 1]) {
+                    const temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
                     isSwapped = true;
                 }
             }
@@ -31,34 +31,36 @@ export class SortingAlgorithmsService {
 
     // O(n^2) - time
     // O(1) - space
-    selectionSort(nums: number[]): number[] {
-        for (let i = 0; i < nums.length - 1; i++) {
+    selectionSort(arr: number[]): number[] {
+        for (let i = 0; i < arr.length - 1; i++) {
             let minIndex = i;
-
-            for (let j = i + 1; j < nums.length; j++) {
-                if (nums[j] < nums[minIndex]) {
+            for (let j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minIndex]) {
                     minIndex = j;
                 }
             }
             if (minIndex !== i) {
-                [ nums[i], nums[minIndex] ] = [ nums[minIndex], nums[i] ];
+                const temp = arr[i];
+                arr[i] = arr[minIndex];
+                arr[minIndex] = temp;
             }
         }
-        return nums;
+        return arr;
     }
 
     // O(n^2) - time
     // O(1) - space
-    insertionSort(nums: number[]): number[] {
-        for (let i = 1; i < nums.length; i++) {
+    insertionSort(arr: number[]): number[] {
+        for (let i = 1; i < arr.length; i++) {
             let currentIndex = i;
-
-            while (nums[currentIndex - 1] !== undefined && nums[currentIndex] < nums[currentIndex - 1]) {
-                [ nums[currentIndex], nums[currentIndex - 1] ] = [ nums[currentIndex - 1], nums[currentIndex] ];
+            while (currentIndex > 0 && arr[currentIndex] < arr[currentIndex - 1]) {
+                const temp = arr[currentIndex];
+                arr[currentIndex] = arr[currentIndex - 1];
+                arr[currentIndex - 1] = temp;
                 currentIndex--;
             }
         }
-        return nums;
+        return arr;
     }
 
     // O(n * log(n)) - time
