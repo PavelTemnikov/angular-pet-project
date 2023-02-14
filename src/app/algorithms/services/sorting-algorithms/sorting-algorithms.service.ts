@@ -65,14 +65,16 @@ export class SortingAlgorithmsService {
 
     // O(n * log(n)) - time
     // O(n) - space
-    heapSort(nums: number[]): number[] {
-        const sortedArr = [];
-        const heap = new MinNumberHeap();
-        for (let i = 0; i < nums.length; i++) { heap.add(nums[i]); }
-        while (!heap.isEmpty()) {
-            sortedArr.push( heap.poll() );
+    heapSort(arr: number[]): number[] {
+        const sortedArray = new Array(arr.length);
+        const heap = new MinNumberHeap(arr.length);
+        for (let i = 0; i < arr.length; i++) {
+            heap.add(arr[i]);
         }
-        return sortedArr;
+        for (let i = 0; !heap.isEmpty(); i++) {
+            sortedArray[i] = heap.poll();
+        }
+        return sortedArray;
     }
 
     // O(log(n) * n) - time

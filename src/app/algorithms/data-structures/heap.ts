@@ -1,7 +1,36 @@
 export class MinNumberHeap {
-    private capacity = 10;
-    private length = 0;
-    private items: (number | undefined)[] = new Array(10);
+    public length = 0;
+    private capacity: number;
+    private storage: (number | undefined)[];
+
+    constructor(capacity = 10) {
+        this.capacity = capacity;
+        this.storage = new Array(this.capacity);
+    }
+
+
+    public add(value: number): void {
+        this.ensureCapacity();
+        this.storage[this.length] = value;
+        this.length += 1;
+        this.heapifyUp();
+    }
+
+    public poll(): number | null {
+        if (this.length === 0) {
+            return null;
+        }
+        const firstValue = this.storage[0] as number;
+
+        this.storage[0] = this.storage[this.length - 1];
+        this.storage[this.length - 1] = undefined;
+        this.length -= 1;
+        this.heapifyDown();
+
+        return firstValue;
+    }
+
+    public isEmpty(): boolean { return this.length === 0; }
 
     private leftChildIndex (index: number): number { return 2 * index + 1; }
     private rightChildIndex(index: number): number { return 2 * index + 2; }
@@ -11,22 +40,19 @@ export class MinNumberHeap {
     private hasRightChild(index: number): boolean { return this.rightChildIndex(index) < this.length; }
     private hasParent    (index: number): boolean { return this.parentIndex(index) >= 0; }
 
-    private leftChild (index: number): number | undefined { return this.items[ this.leftChildIndex(index) ]; }
-    private rightChild(index: number): number | undefined { return this.items[ this.rightChildIndex(index) ]; }
-    private parent    (index: number): number | undefined { return this.items[ this.parentIndex(index) ]; }
+    private leftChild (index: number): number | undefined { return this.storage[this.leftChildIndex(index)]; }
+    private rightChild(index: number): number | undefined { return this.storage[this.rightChildIndex(index)]; }
+    private parent    (index: number): number | undefined { return this.storage[this.parentIndex(index)]; }
 
-    private swap(indexOne: number, indexTwo: number): void {
-        const temp = this.items[indexOne];
-        this.items[indexOne] = this.items[indexTwo];
-        this.items[indexTwo] = temp;
-    }
-
-    private ensureExtraCapacity(): void {
-        if (this.length === this.capacity) {
-            const tempItems = this.items;
-            this.capacity *= 2;
-            this.items = new Array(this.capacity);
-            for (let i = 0; i< tempItems.length; i++) { this.items[i] = tempItems[i]; }
+    private ensureCapacity(): void {
+        if (this.length < this.capacity) {
+            return;
+        }
+        const tempStorage = this.storage;
+        this.capacity *= 2;
+        this.storage = new Array(this.capacity);
+        for (let i = 0; i < this.length; i++) {
+            this.storage[i] = tempStorage[i];
         }
     }
 
@@ -35,51 +61,33 @@ export class MinNumberHeap {
             return;
         }
         let index = this.length - 1;
-        while (this.hasParent(index) && (this.parent(index) as number) > (this.items[index] as number)) {
+        while (this.hasParent(index) && (this.parent(index) as number) > (this.storage[index] as number)) {
             this.swap(this.parentIndex(index), index);
             index = this.parentIndex(index);
         }
     }
 
     private heapifyDown(): void {
-        let index = 0;
+        if (this.length === 0) {
+            return;
+        }
+        let index = 0
         while (this.hasLeftChild(index)) {
-            let smallerChaildIndex = this.leftChildIndex(index);
+            let smallerChildIndex = this.leftChildIndex(index) as number;
             if (this.hasRightChild(index) && (this.rightChild(index) as number) < (this.leftChild(index) as number)) {
-                smallerChaildIndex = this.rightChildIndex(index);
+                smallerChildIndex = this.rightChildIndex(index);
             }
-            if ((this.items[index] as number) < (this.items[smallerChaildIndex] as number)) {
+            if ((this.storage[index] as number) <= (this.storage[smallerChildIndex] as number)) {
                 break;
             }
-            this.swap(smallerChaildIndex, index);
-            index = smallerChaildIndex;
+            this.swap(smallerChildIndex, index);
+            index = smallerChildIndex;
         }
     }
 
-    public peek(): number {
-        if (this.length === 0) throw Error('can\'t peek item as heap is empty');
-        return this.items[0] as number;
+    private swap(indexOne: number, indexTwo: number): void {
+        const temp = this.storage[indexOne];
+        this.storage[indexOne] = this.storage[indexTwo];
+        this.storage[indexTwo] = temp;
     }
-
-    public poll(): number {
-        if (this.length === 0) throw Error('can\'t poll item as heap is empty');
-        const item = this.items[0] as number;
-
-        this.items[0] = this.items[this.length - 1];
-        this.items[this.length - 1] = undefined;
-        this.length -= 1;
-
-        this.heapifyDown();
-
-        return item;
-    }
-
-    public add(item: number): void {
-        this.ensureExtraCapacity();
-        this.items[this.length] = item;
-        this.length += 1;
-        this.heapifyUp();
-    }
-
-    public isEmpty(): boolean { return this.length === 0; }
 }
