@@ -16,8 +16,9 @@ export class MinNumberHeap {
     private parent    (index: number): number | undefined { return this.items[ this.parentIndex(index) ]; }
 
     private swap(indexOne: number, indexTwo: number): void {
-        // todo: replace destructurization in all project
-        [ this.items[indexOne], this.items[indexTwo] ] = [ this.items[indexTwo], this.items[indexOne] ];
+        const temp = this.items[indexOne];
+        this.items[indexOne] = this.items[indexTwo];
+        this.items[indexTwo] = temp;
     }
 
     private ensureExtraCapacity(): void {
