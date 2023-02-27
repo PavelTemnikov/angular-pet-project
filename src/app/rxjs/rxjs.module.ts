@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { RxjsRoutingModule } from './rxjs-routing.module';
 import { RxjsComponent } from './rxjs.component';
+import { OperatorsComponent } from './operators/operators.component';
 
 
 @NgModule({
   declarations: [
-    RxjsComponent
+    RxjsComponent,
+    OperatorsComponent
   ],
   imports: [
     CommonModule,
